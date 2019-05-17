@@ -1,4 +1,4 @@
-package star.sky.another.demo;
+package star.sky.another;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="star.sky.another.dao.MusicMapper">
+  <resultMap id="BaseResultMap" type="star.sky.another.model.Music">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="belong_album_id" jdbcType="BIGINT" property="belongAlbumId" />
+    <result column="belong_album_name" jdbcType="VARCHAR" property="belongAlbumName" />
+    <result column="singer_id" jdbcType="BIGINT" property="singerId" />
+    <result column="singer_name" jdbcType="VARCHAR" property="singerName" />
+    <result column="duration" jdbcType="TIME" property="duration" />
+    <result column="release_time" jdbcType="DATE" property="releaseTime" />
+    <result column="yesterday_play_count" jdbcType="INTEGER" property="yesterdayPlayCount" />
+    <result column="today_play_count" jdbcType="INTEGER" property="todayPlayCount" />
+    <result column="total_play_count" jdbcType="INTEGER" property="totalPlayCount" />
+    <result column="lyric" jdbcType="VARCHAR" property="lyric" />
+    <result column="tag" jdbcType="LONGVARCHAR" property="tag" />
+  </resultMap>
+  <insert id="insert" parameterType="star.sky.another.model.Music">
+    insert into music (id, url, name, 
+      belong_album_id, belong_album_name, singer_id, 
+      singer_name, duration, release_time, 
+      yesterday_play_count, today_play_count, total_play_count, 
+      lyric, tag)
+    values (#{id,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{belongAlbumId,jdbcType=BIGINT}, #{belongAlbumName,jdbcType=VARCHAR}, #{singerId,jdbcType=BIGINT}, 
+      #{singerName,jdbcType=VARCHAR}, #{duration,jdbcType=TIME}, #{releaseTime,jdbcType=DATE}, 
+      #{yesterdayPlayCount,jdbcType=INTEGER}, #{todayPlayCount,jdbcType=INTEGER}, #{totalPlayCount,jdbcType=INTEGER}, 
+      #{lyric,jdbcType=VARCHAR}, #{tag,jdbcType=LONGVARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, url, name, belong_album_id, belong_album_name, singer_id, singer_name, 
+    duration, release_time, yesterday_play_count, today_play_count, total_play_count, 
+    lyric, tag
+    from music
+  </select>
+</mapper>

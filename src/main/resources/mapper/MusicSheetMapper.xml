@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="star.sky.another.dao.MusicSheetMapper">
+  <resultMap id="BaseResultMap" type="star.sky.another.model.MusicSheet">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="creator_nick_name" jdbcType="VARCHAR" property="creatorNickName" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="collection_number" jdbcType="BIGINT" property="collectionNumber" />
+    <result column="total_play_count" jdbcType="BIGINT" property="totalPlayCount" />
+    <result column="share_count" jdbcType="BIGINT" property="shareCount" />
+    <result column="collection_music" jdbcType="LONGVARCHAR" property="collectionMusic" />
+    <result column="tag" jdbcType="LONGVARCHAR" property="tag" />
+  </resultMap>
+  <insert id="insert" parameterType="star.sky.another.model.MusicSheet">
+    insert into music_sheet (id, title, description, 
+      image, creator_id, creator_nick_name, 
+      create_time, collection_number, total_play_count, 
+      share_count, collection_music, tag
+      )
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, #{creatorNickName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE}, #{collectionNumber,jdbcType=BIGINT}, #{totalPlayCount,jdbcType=BIGINT}, 
+      #{shareCount,jdbcType=BIGINT}, #{collectionMusic,jdbcType=LONGVARCHAR}, #{tag,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, title, description, image, creator_id, creator_nick_name, create_time, 
+    collection_number, total_play_count, share_count, collection_music, tag
+    from music_sheet
+  </select>
+</mapper>

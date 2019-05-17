@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="star.sky.another.dao.UserCollectionSheetMapper">
+  <resultMap id="BaseResultMap" type="star.sky.another.model.UserCollectionSheet">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="sheet_id" jdbcType="BIGINT" property="sheetId" />
+    <result column="sheet_title" jdbcType="VARCHAR" property="sheetTitle" />
+    <result column="sheet_image" jdbcType="VARCHAR" property="sheetImage" />
+  </resultMap>
+  <insert id="insert" parameterType="star.sky.another.model.UserCollectionSheet">
+    insert into user_collection_sheet (id, user_id, sheet_id, 
+      sheet_title, sheet_image)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{sheetId,jdbcType=BIGINT}, 
+      #{sheetTitle,jdbcType=VARCHAR}, #{sheetImage,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, sheet_id, sheet_title, sheet_image
+    from user_collection_sheet
+  </select>
+</mapper>

@@ -1,4 +1,4 @@
-package star.sky.another.demo;
+package star.sky.another;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

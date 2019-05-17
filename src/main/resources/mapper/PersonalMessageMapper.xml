@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="star.sky.another.dao.PersonalMessageMapper">
+  <resultMap id="BaseResultMap" type="star.sky.another.model.PersonalMessage">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="sender_id" jdbcType="BIGINT" property="senderId" />
+    <result column="sender_nick_name" jdbcType="VARCHAR" property="senderNickName" />
+    <result column="sender_image" jdbcType="VARCHAR" property="senderImage" />
+    <result column="receiver_id" jdbcType="BIGINT" property="receiverId" />
+    <result column="receiver_nick_name" jdbcType="VARCHAR" property="receiverNickName" />
+    <result column="receiver_image" jdbcType="VARCHAR" property="receiverImage" />
+    <result column="sending_time" jdbcType="TIMESTAMP" property="sendingTime" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <insert id="insert" parameterType="star.sky.another.model.PersonalMessage">
+    insert into personal_message (id, sender_id, sender_nick_name, 
+      sender_image, receiver_id, receiver_nick_name, 
+      receiver_image, sending_time, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{senderId,jdbcType=BIGINT}, #{senderNickName,jdbcType=VARCHAR}, 
+      #{senderImage,jdbcType=VARCHAR}, #{receiverId,jdbcType=BIGINT}, #{receiverNickName,jdbcType=VARCHAR}, 
+      #{receiverImage,jdbcType=VARCHAR}, #{sendingTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, sender_id, sender_nick_name, sender_image, receiver_id, receiver_nick_name, 
+    receiver_image, sending_time, content
+    from personal_message
+  </select>
+</mapper>
