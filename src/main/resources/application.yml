@@ -1,7 +1,6 @@
 spring:
   profiles:
     active: dev
-  datasource:
-    username: root
-    password: 123456
-    url: localhost:3306/cloudmusic
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: star.sky.another

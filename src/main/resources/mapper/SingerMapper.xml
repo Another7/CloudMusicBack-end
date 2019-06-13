@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="star.sky.another.dao.SingerMapper">
-  <resultMap id="BaseResultMap" type="star.sky.another.model.Singer">
-    <result column="id" jdbcType="BIGINT" property="id" />
+  <resultMap id="BaseResultMap" type="star.sky.another.model.entity.Singer">
+    <id column="id" jdbcType="BIGINT" property="id"/>
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -11,12 +11,16 @@
     <result column="tel" jdbcType="VARCHAR" property="tel" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="register_time" jdbcType="DATE" property="registerTime" />
+    <result column="register_time" jdbcType="TIMESTAMP" property="registerTime"/>
     <result column="authentication" jdbcType="BIT" property="authentication" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="tag" jdbcType="LONGVARCHAR" property="tag" />
   </resultMap>
-  <insert id="insert" parameterType="star.sky.another.model.Singer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from singer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="star.sky.another.model.entity.Singer">
     insert into singer (id, nick_name, email, 
       password, image, gender, 
       tel, address, description, 
@@ -25,9 +29,31 @@
     values (#{id,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
       #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{registerTime,jdbcType=DATE}, #{authentication,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, 
+      #{registerTime,jdbcType=TIMESTAMP}, #{authentication,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, 
       #{tag,jdbcType=LONGVARCHAR})
   </insert>
+  <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.Singer">
+    update singer
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      register_time = #{registerTime,jdbcType=TIMESTAMP},
+      authentication = #{authentication,jdbcType=BIT},
+      user_id = #{userId,jdbcType=BIGINT},
+      tag = #{tag,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, nick_name, email, password, image, gender, tel, address, description, 
+    register_time, authentication, user_id, tag
+    from singer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, nick_name, email, password, image, gender, tel, address, description, 
     register_time, authentication, user_id, tag

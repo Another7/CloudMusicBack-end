@@ -1,8 +1,8 @@
-package star.sky.another.model;
+package star.sky.another.model.entity;
 
 import java.util.Date;
 
-public class Singer {
+public class User {
     private Long id;
 
     private String nickName;
@@ -23,9 +23,15 @@ public class Singer {
 
     private Date registerTime;
 
-    private Boolean authentication;
+    private Date birthday;
 
-    private Long userId;
+    private Integer momentNumber;
+
+    private Integer followNumber;
+
+    private Integer followerNumber;
+
+    private String notification;
 
     private String tag;
 
@@ -109,20 +115,44 @@ public class Singer {
         this.registerTime = registerTime;
     }
 
-    public Boolean getAuthentication() {
-        return authentication;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setAuthentication(Boolean authentication) {
-        this.authentication = authentication;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Integer getMomentNumber() {
+        return momentNumber;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setMomentNumber(Integer momentNumber) {
+        this.momentNumber = momentNumber;
+    }
+
+    public Integer getFollowNumber() {
+        return followNumber;
+    }
+
+    public void setFollowNumber(Integer followNumber) {
+        this.followNumber = followNumber;
+    }
+
+    public Integer getFollowerNumber() {
+        return followerNumber;
+    }
+
+    public void setFollowerNumber(Integer followerNumber) {
+        this.followerNumber = followerNumber;
+    }
+
+    public String getNotification() {
+        return notification;
+    }
+
+    public void setNotification(String notification) {
+        this.notification = notification == null ? null : notification.trim();
     }
 
     public String getTag() {

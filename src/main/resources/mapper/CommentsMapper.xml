@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="star.sky.another.dao.CommentsMapper">
-  <resultMap id="BaseResultMap" type="star.sky.another.model.Comments">
-    <result column="id" jdbcType="BIGINT" property="id" />
+  <resultMap id="BaseResultMap" type="star.sky.another.model.entity.Comments">
+    <id column="id" jdbcType="BIGINT" property="id"/>
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -12,7 +12,11 @@
     <result column="commentator_nick_name" jdbcType="VARCHAR" property="commentatorNickName" />
     <result column="commentator_image" jdbcType="VARCHAR" property="commentatorImage" />
   </resultMap>
-  <insert id="insert" parameterType="star.sky.another.model.Comments">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from comments
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="star.sky.another.model.entity.Comments">
     insert into comments (id, type, content, 
       create_time, thumb_number, record_id, 
       commentator_id, commentator_nick_name, commentator_image
@@ -22,6 +26,24 @@
       #{commentatorId,jdbcType=BIGINT}, #{commentatorNickName,jdbcType=VARCHAR}, #{commentatorImage,jdbcType=VARCHAR}
       )
   </insert>
+  <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.Comments">
+    update comments
+    set type = #{type,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      thumb_number = #{thumbNumber,jdbcType=INTEGER},
+      record_id = #{recordId,jdbcType=BIGINT},
+      commentator_id = #{commentatorId,jdbcType=BIGINT},
+      commentator_nick_name = #{commentatorNickName,jdbcType=VARCHAR},
+      commentator_image = #{commentatorImage,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, type, content, create_time, thumb_number, record_id, commentator_id, commentator_nick_name, 
+    commentator_image
+    from comments
+    where id = #{id,jdbcType=BIGINT}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, type, content, create_time, thumb_number, record_id, commentator_id, commentator_nick_name, 
     commentator_image

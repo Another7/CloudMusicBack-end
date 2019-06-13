@@ -1,4 +1,4 @@
-package star.sky.another.model;
+package star.sky.another.model.entity;
 
 public class Follow {
     private Long id;

@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="star.sky.another.dao.MusicSheetMapper">
-  <resultMap id="BaseResultMap" type="star.sky.another.model.MusicSheet">
-    <result column="id" jdbcType="BIGINT" property="id" />
+  <resultMap id="BaseResultMap" type="star.sky.another.model.entity.MusicSheet">
+    <id column="id" jdbcType="BIGINT" property="id"/>
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
     <result column="creator_nick_name" jdbcType="VARCHAR" property="creatorNickName" />
-    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     <result column="collection_number" jdbcType="BIGINT" property="collectionNumber" />
     <result column="total_play_count" jdbcType="BIGINT" property="totalPlayCount" />
     <result column="share_count" jdbcType="BIGINT" property="shareCount" />
     <result column="collection_music" jdbcType="LONGVARCHAR" property="collectionMusic" />
     <result column="tag" jdbcType="LONGVARCHAR" property="tag" />
   </resultMap>
-  <insert id="insert" parameterType="star.sky.another.model.MusicSheet">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from music_sheet
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="star.sky.another.model.entity.MusicSheet">
     insert into music_sheet (id, title, description, 
       image, creator_id, creator_nick_name, 
       create_time, collection_number, total_play_count, 
@@ -23,10 +27,31 @@
       )
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{image,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, #{creatorNickName,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=DATE}, #{collectionNumber,jdbcType=BIGINT}, #{totalPlayCount,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{collectionNumber,jdbcType=BIGINT}, #{totalPlayCount,jdbcType=BIGINT}, 
       #{shareCount,jdbcType=BIGINT}, #{collectionMusic,jdbcType=LONGVARCHAR}, #{tag,jdbcType=LONGVARCHAR}
       )
   </insert>
+  <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.MusicSheet">
+    update music_sheet
+    set title = #{title,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      creator_nick_name = #{creatorNickName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      collection_number = #{collectionNumber,jdbcType=BIGINT},
+      total_play_count = #{totalPlayCount,jdbcType=BIGINT},
+      share_count = #{shareCount,jdbcType=BIGINT},
+      collection_music = #{collectionMusic,jdbcType=LONGVARCHAR},
+      tag = #{tag,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, title, description, image, creator_id, creator_nick_name, create_time, 
+    collection_number, total_play_count, share_count, collection_music, tag
+    from music_sheet
+    where id = #{id,jdbcType=BIGINT}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, title, description, image, creator_id, creator_nick_name, create_time, 
     collection_number, total_play_count, share_count, collection_music, tag

@@ -1,13 +1,15 @@
 package star.sky.another;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+@MapperScan(basePackages = "star.sky.another.dao")
+public class CloudMusicApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(CloudMusicApplication.class, args);
     }
 
 }
