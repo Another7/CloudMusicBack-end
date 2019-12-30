@@ -7,7 +7,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
- * @Description
+ * @Description 跨域问题配置，允许访问
  * @Author Another
  * @Date 2019/06/13 18:53
  **/
