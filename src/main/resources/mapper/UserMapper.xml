@@ -20,61 +20,122 @@
         <result column="tag" jdbcType="LONGVARCHAR" property="tag"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from user
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
+        delete
+        from user
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
     <insert id="insert" parameterType="star.sky.another.model.entity.User">
-    insert into user (id, nick_name, email, 
-      password, image, gender, 
-      tel, address, description, 
-      register_time, birthday, moment_number, 
-      follow_number, follower_number, notification, 
-      tag)
-    values (#{id,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
-      #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{registerTime,jdbcType=TIMESTAMP}, #{birthday,jdbcType=DATE}, #{momentNumber,jdbcType=INTEGER}, 
-      #{followNumber,jdbcType=INTEGER}, #{followerNumber,jdbcType=INTEGER}, #{notification,jdbcType=LONGVARCHAR}, 
-      #{tag,jdbcType=LONGVARCHAR})
-  </insert>
+        insert into user (id, nick_name, email,
+                          password, image, gender,
+                          tel, address, description,
+                          register_time, birthday, moment_number,
+                          follow_number, follower_number, notification,
+                          tag)
+        values (#{id,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+                #{password,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER},
+                #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+                #{registerTime,jdbcType=TIMESTAMP}, #{birthday,jdbcType=DATE}, #{momentNumber,jdbcType=INTEGER},
+                #{followNumber,jdbcType=INTEGER}, #{followerNumber,jdbcType=INTEGER},
+                #{notification,jdbcType=LONGVARCHAR},
+                #{tag,jdbcType=LONGVARCHAR})
+    </insert>
     <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.User">
-    update user
-    set nick_name = #{nickName,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      image = #{image,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=INTEGER},
-      tel = #{tel,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      register_time = #{registerTime,jdbcType=TIMESTAMP},
-      birthday = #{birthday,jdbcType=DATE},
-      moment_number = #{momentNumber,jdbcType=INTEGER},
-      follow_number = #{followNumber,jdbcType=INTEGER},
-      follower_number = #{followerNumber,jdbcType=INTEGER},
-      notification = #{notification,jdbcType=LONGVARCHAR},
-      tag = #{tag,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+        update user
+        set nick_name       = #{nickName,jdbcType=VARCHAR},
+            email           = #{email,jdbcType=VARCHAR},
+            password        = #{password,jdbcType=VARCHAR},
+            image           = #{image,jdbcType=VARCHAR},
+            gender          = #{gender,jdbcType=INTEGER},
+            tel             = #{tel,jdbcType=VARCHAR},
+            address         = #{address,jdbcType=VARCHAR},
+            description     = #{description,jdbcType=VARCHAR},
+            register_time   = #{registerTime,jdbcType=TIMESTAMP},
+            birthday        = #{birthday,jdbcType=DATE},
+            moment_number   = #{momentNumber,jdbcType=INTEGER},
+            follow_number   = #{followNumber,jdbcType=INTEGER},
+            follower_number = #{followerNumber,jdbcType=INTEGER},
+            notification    = #{notification,jdbcType=LONGVARCHAR},
+            tag             = #{tag,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select id, nick_name, email, password, image, gender, tel, address, description, 
-    register_time, birthday, moment_number, follow_number, follower_number, notification, 
-    tag
-    from user
-    where id = #{id,jdbcType=BIGINT}
-  </select>
+        select id,
+               nick_name,
+               email,
+               password,
+               image,
+               gender,
+               tel,
+               address,
+               description,
+               register_time,
+               birthday,
+               moment_number,
+               follow_number,
+               follower_number,
+               notification,
+               tag
+        from user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
-    select id, nick_name, email, password, image, gender, tel, address, description, 
-    register_time, birthday, moment_number, follow_number, follower_number, notification, 
-    tag
-    from user
-  </select>
-    <select id="selectByEmailPassword" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id, nick_name, email, password, image, gender, tel, address, description,
-    register_time, birthday, moment_number, follow_number, follower_number, notification,
-    tag
-    from user
-    where email = #{email, jdbcType=VARCHAR}
-    and password = #{password, jdbcType=VARCHAR}
-  </select>
+        select id,
+               nick_name,
+               email,
+               password,
+               image,
+               gender,
+               tel,
+               address,
+               description,
+               register_time,
+               birthday,
+               moment_number,
+               follow_number,
+               follower_number,
+               notification,
+               tag
+        from user
+    </select>
+    <select id="selectByEmailPassword" parameterType="star.sky.another.model.entity.User" resultMap="BaseResultMap">
+        select id,
+               nick_name,
+               email,
+               password,
+               image,
+               gender,
+               tel,
+               address,
+               description,
+               register_time,
+               birthday,
+               moment_number,
+               follow_number,
+               follower_number,
+               notification,
+               tag
+        from user
+        where email = #{email, jdbcType=VARCHAR}
+          and password = #{password, jdbcType=VARCHAR}
+    </select>
+    <select id="selectByUserEmail" parameterType="star.sky.another.model.entity.User" resultMap="BaseResultMap">
+        select id,
+               nick_name,
+               email,
+               password,
+               image,
+               gender,
+               tel,
+               address,
+               description,
+               register_time,
+               birthday,
+               moment_number,
+               follow_number,
+               follower_number,
+               notification,
+               tag
+        from user
+        where email = #{email, jdbcType=VARCHAR}
+    </select>
 </mapper>

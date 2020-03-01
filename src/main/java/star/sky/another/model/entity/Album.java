@@ -2,7 +2,7 @@ package star.sky.another.model.entity;
 
 import java.util.Date;
 
-public class Album {
+public class Album extends BaseEntity {
     private Long id;
 
     private String title;
@@ -22,6 +22,8 @@ public class Album {
     private String collectionMusic;
 
     private String tag;
+
+    private Integer status;
 
     public Long getId() {
         return id;
@@ -101,5 +103,13 @@ public class Album {
 
     public void setTag(String tag) {
         this.tag = tag == null ? null : tag.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

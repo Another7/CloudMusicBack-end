@@ -1,15 +1,18 @@
 package star.sky.another.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import star.sky.another.dao.UserMapper;
 import star.sky.another.model.entity.User;
 import star.sky.another.service.UserServiceInterface;
+import star.sky.another.view.EntityView;
 
 @Service
 public class UserServiceInterfaceImpl implements UserServiceInterface {
-    @Autowired
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
+
+    public UserServiceInterfaceImpl(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     @Override
     public Boolean insertUser(User user) {
@@ -32,7 +35,41 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
     }
 
     @Override
-    public Boolean login(String email, String password) {
-        return userMapper.selectByEmailPassword(email, password) == null;
+    public EntityView<User> register(User user) {
+        EntityView<User> entityView = new EntityView<>();
+        // 判断是否已经注册
+        User userResult = userMapper.selectByUserEmail(user);
+        // 未注册
+        if (userResult == null) {
+            int result = userMapper.insert(user);
+            if (result == 1) {
+                entityView.setCode("1");
+                entityView.setEntity(userMapper.selectByUserEmail(user));
+            } else {
+                entityView.setCode("0");
+            }
+            return entityView;
+        }
+        // 注册过了
+        entityView.setCode("2");
+        return entityView;
+    }
+
+    @Override
+    public EntityView<User> login(User user) {
+        EntityView<User> entityView = new EntityView<>();
+        User userResult = userMapper.selectByUserEmail(user);
+        if (userResult == null) {
+            entityView.setCode("0");
+        } else {
+            userResult = userMapper.selectByEmailPassword(user);
+            if (userResult == null) {
+                entityView.setCode("2");
+            } else {
+                entityView.setCode("1");
+                entityView.setEntity(userResult);
+            }
+        }
+        return entityView;
     }
 }

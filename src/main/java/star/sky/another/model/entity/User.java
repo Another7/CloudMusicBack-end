@@ -2,7 +2,7 @@ package star.sky.another.model.entity;
 
 import java.util.Date;
 
-public class User {
+public class User extends BaseEntity {
     private Long id;
 
     private String nickName;

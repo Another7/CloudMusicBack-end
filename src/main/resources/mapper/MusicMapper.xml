@@ -1,66 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="star.sky.another.dao.MusicMapper">
-  <resultMap id="BaseResultMap" type="star.sky.another.model.entity.Music">
-    <id column="id" jdbcType="BIGINT" property="id"/>
-    <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="belong_album_id" jdbcType="BIGINT" property="belongAlbumId" />
-    <result column="belong_album_name" jdbcType="VARCHAR" property="belongAlbumName" />
-    <result column="singer_id" jdbcType="BIGINT" property="singerId" />
-    <result column="singer_name" jdbcType="VARCHAR" property="singerName" />
-    <result column="duration" jdbcType="TIME" property="duration" />
-    <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime"/>
-    <result column="yesterday_play_count" jdbcType="INTEGER" property="yesterdayPlayCount" />
-    <result column="today_play_count" jdbcType="INTEGER" property="todayPlayCount" />
-    <result column="total_play_count" jdbcType="INTEGER" property="totalPlayCount" />
-    <result column="lyric" jdbcType="VARCHAR" property="lyric" />
-    <result column="tag" jdbcType="LONGVARCHAR" property="tag" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from music
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="star.sky.another.model.entity.Music">
-    insert into music (id, url, name, 
-      belong_album_id, belong_album_name, singer_id, 
-      singer_name, duration, release_time, 
-      yesterday_play_count, today_play_count, total_play_count, 
-      lyric, tag)
-    values (#{id,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{belongAlbumId,jdbcType=BIGINT}, #{belongAlbumName,jdbcType=VARCHAR}, #{singerId,jdbcType=BIGINT}, 
-      #{singerName,jdbcType=VARCHAR}, #{duration,jdbcType=TIME}, #{releaseTime,jdbcType=TIMESTAMP}, 
-      #{yesterdayPlayCount,jdbcType=INTEGER}, #{todayPlayCount,jdbcType=INTEGER}, #{totalPlayCount,jdbcType=INTEGER}, 
-      #{lyric,jdbcType=VARCHAR}, #{tag,jdbcType=LONGVARCHAR})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.Music">
-    update music
-    set url = #{url,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      belong_album_id = #{belongAlbumId,jdbcType=BIGINT},
-      belong_album_name = #{belongAlbumName,jdbcType=VARCHAR},
-      singer_id = #{singerId,jdbcType=BIGINT},
-      singer_name = #{singerName,jdbcType=VARCHAR},
-      duration = #{duration,jdbcType=TIME},
-      release_time = #{releaseTime,jdbcType=TIMESTAMP},
-      yesterday_play_count = #{yesterdayPlayCount,jdbcType=INTEGER},
-      today_play_count = #{todayPlayCount,jdbcType=INTEGER},
-      total_play_count = #{totalPlayCount,jdbcType=INTEGER},
-      lyric = #{lyric,jdbcType=VARCHAR},
-      tag = #{tag,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select id, url, name, belong_album_id, belong_album_name, singer_id, singer_name, 
-    duration, release_time, yesterday_play_count, today_play_count, total_play_count, 
-    lyric, tag
-    from music
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, url, name, belong_album_id, belong_album_name, singer_id, singer_name, 
-    duration, release_time, yesterday_play_count, today_play_count, total_play_count, 
-    lyric, tag
-    from music
-  </select>
+    <resultMap id="BaseResultMap" type="star.sky.another.model.entity.Music">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="belong_album_id" jdbcType="BIGINT" property="belongAlbumId"/>
+        <result column="belong_album_name" jdbcType="VARCHAR" property="belongAlbumName"/>
+        <result column="singer_id" jdbcType="BIGINT" property="singerId"/>
+        <result column="singer_name" jdbcType="VARCHAR" property="singerName"/>
+        <result column="duration" jdbcType="TIME" property="duration"/>
+        <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime"/>
+        <result column="yesterday_play_count" jdbcType="INTEGER" property="yesterdayPlayCount"/>
+        <result column="today_play_count" jdbcType="INTEGER" property="todayPlayCount"/>
+        <result column="total_play_count" jdbcType="INTEGER" property="totalPlayCount"/>
+        <result column="lyric" jdbcType="VARCHAR" property="lyric"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="tag" jdbcType="LONGVARCHAR" property="tag"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from music
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="star.sky.another.model.entity.Music">
+        insert into music (id, url, name,
+                           belong_album_id, belong_album_name, singer_id,
+                           singer_name, duration, release_time,
+                           yesterday_play_count, today_play_count, total_play_count,
+                           lyric, status, tag)
+        values (#{id,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+                #{belongAlbumId,jdbcType=BIGINT}, #{belongAlbumName,jdbcType=VARCHAR}, #{singerId,jdbcType=BIGINT},
+                #{singerName,jdbcType=VARCHAR}, #{duration,jdbcType=TIME}, #{releaseTime,jdbcType=TIMESTAMP},
+                #{yesterdayPlayCount,jdbcType=INTEGER}, #{todayPlayCount,jdbcType=INTEGER},
+                #{totalPlayCount,jdbcType=INTEGER},
+                #{lyric,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{tag,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertList" parameterType="java.util.List" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into music (id,url, name,
+        belong_album_id, belong_album_name, singer_id,
+        singer_name, status)
+        values
+        <foreach collection="musicList" item="music" separator=",">
+            (
+            #{music.id},
+            #{music.url},
+            #{music.name},
+            #{music.belongAlbumId},
+            #{music.belongAlbumName},
+            #{music.singerId},
+            #{music.singerName},
+            #{music.status}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.Music">
+        update music
+        set url                  = #{url,jdbcType=VARCHAR},
+            name                 = #{name,jdbcType=VARCHAR},
+            belong_album_id      = #{belongAlbumId,jdbcType=BIGINT},
+            belong_album_name    = #{belongAlbumName,jdbcType=VARCHAR},
+            singer_id            = #{singerId,jdbcType=BIGINT},
+            singer_name          = #{singerName,jdbcType=VARCHAR},
+            duration             = #{duration,jdbcType=TIME},
+            release_time         = #{releaseTime,jdbcType=TIMESTAMP},
+            yesterday_play_count = #{yesterdayPlayCount,jdbcType=INTEGER},
+            today_play_count     = #{todayPlayCount,jdbcType=INTEGER},
+            total_play_count     = #{totalPlayCount,jdbcType=INTEGER},
+            lyric                = #{lyric,jdbcType=VARCHAR},
+            status               = #{status,jdbcType=INTEGER},
+            tag                  = #{tag,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select id,
+               url,
+               name,
+               belong_album_id,
+               belong_album_name,
+               singer_id,
+               singer_name,
+               duration,
+               release_time,
+               yesterday_play_count,
+               today_play_count,
+               total_play_count,
+               lyric,
+               status,
+               tag
+        from music
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id,
+               url,
+               name,
+               belong_album_id,
+               belong_album_name,
+               singer_id,
+               singer_name,
+               duration,
+               release_time,
+               yesterday_play_count,
+               today_play_count,
+               total_play_count,
+               lyric,
+               status,
+               tag
+        from music
+    </select>
 </mapper>

@@ -2,7 +2,7 @@ package star.sky.another.model.entity;
 
 import java.util.Date;
 
-public class Comments {
+public class Comments extends BaseEntity {
     private Long id;
 
     private Integer type;

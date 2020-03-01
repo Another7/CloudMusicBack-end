@@ -1,6 +1,6 @@
 package star.sky.another.model.entity;
 
-public class UserCollectionSheet {
+public class UserCollectionSheet extends BaseEntity {
     private Long id;
 
     private Long userId;

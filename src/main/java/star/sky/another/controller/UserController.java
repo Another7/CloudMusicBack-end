@@ -1,23 +1,17 @@
 package star.sky.another.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import star.sky.another.model.entity.User;
 import star.sky.another.service.UserServiceInterface;
+import star.sky.another.view.EntityView;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
     private final UserServiceInterface userServiceInterface;
 
-    @Autowired
     public UserController(UserServiceInterface userServiceInterface) {
         this.userServiceInterface = userServiceInterface;
-    }
-
-    @PostMapping()
-    public Boolean registerUser(@RequestBody User user) {
-        return userServiceInterface.insertUser(user);
     }
 
     @DeleteMapping()
@@ -35,9 +29,17 @@ public class UserController {
         return userServiceInterface.selectUserByUserId(userId);
     }
 
+    @PostMapping()
+    public EntityView<User> registerUser(@RequestBody User user) {
+        return userServiceInterface.register(user);
+    }
+
     @GetMapping(value = "/login")
-    public Boolean login(@RequestParam(value = "email") String email,
-                         @RequestParam(value = "password") String password) {
-        return userServiceInterface.login(email, password);
+    public EntityView<User> login(@RequestParam(value = "email") String email,
+                                  @RequestParam(value = "password") String password) {
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        return userServiceInterface.login(user);
     }
 }

@@ -1,6 +1,5 @@
 package star.sky.another.dao;
 
-import org.apache.ibatis.annotations.Param;
 import star.sky.another.model.entity.User;
 
 import java.util.List;
@@ -16,6 +15,7 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    User selectByEmailPassword(@Param(value = "email") String email,
-                               @Param(value = "password") String password);
+    User selectByUserEmail(User user);
+
+    User selectByEmailPassword(User user);
 }

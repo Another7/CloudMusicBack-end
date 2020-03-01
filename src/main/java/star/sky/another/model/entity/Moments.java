@@ -2,7 +2,7 @@ package star.sky.another.model.entity;
 
 import java.util.Date;
 
-public class Moments {
+public class Moments extends BaseEntity {
     private Long id;
 
     private Long creatorId;

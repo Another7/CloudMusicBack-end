@@ -1,6 +1,6 @@
 package star.sky.another.model.entity;
 
-public class Follow {
+public class Follow extends BaseEntity {
     private Long id;
 
     private Long userId;
