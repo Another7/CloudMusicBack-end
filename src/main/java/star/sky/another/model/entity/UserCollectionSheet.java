@@ -50,4 +50,15 @@ public class UserCollectionSheet extends BaseEntity {
     public void setSheetImage(String sheetImage) {
         this.sheetImage = sheetImage == null ? null : sheetImage.trim();
     }
+
+    @Override
+    public String toString() {
+        return "UserCollectionSheet{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", sheetId=" + sheetId +
+                ", sheetTitle='" + sheetTitle + '\'' +
+                ", sheetImage='" + sheetImage + '\'' +
+                '}';
+    }
 }

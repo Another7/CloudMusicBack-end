@@ -24,4 +24,14 @@ public class MusicServiceInterfaceImpl implements MusicServiceInterface {
     public Integer insertMusicList(List<Music> musicList) {
         return musicMapper.insertList(musicList);
     }
+
+    @Override
+    public List<Music> selectAll() {
+        return musicMapper.selectAll();
+    }
+
+    @Override
+    public Integer musicVerify(List<Long> idList) {
+        return musicMapper.musicVerify(idList);
+    }
 }

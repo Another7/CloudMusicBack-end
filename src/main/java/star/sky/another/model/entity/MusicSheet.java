@@ -122,4 +122,22 @@ public class MusicSheet extends BaseEntity {
     public void setTag(String tag) {
         this.tag = tag == null ? null : tag.trim();
     }
+
+    @Override
+    public String toString() {
+        return "MusicSheet{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
+                ", creatorId=" + creatorId +
+                ", creatorNickName='" + creatorNickName + '\'' +
+                ", createTime=" + createTime +
+                ", collectionNumber=" + collectionNumber +
+                ", totalPlayCount=" + totalPlayCount +
+                ", shareCount=" + shareCount +
+                ", collectionMusic='" + collectionMusic + '\'' +
+                ", tag='" + tag + '\'' +
+                '}';
+    }
 }

@@ -162,4 +162,26 @@ public class User extends BaseEntity {
     public void setTag(String tag) {
         this.tag = tag == null ? null : tag.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nickName='" + nickName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", image='" + image + '\'' +
+                ", gender=" + gender +
+                ", tel='" + tel + '\'' +
+                ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                ", registerTime=" + registerTime +
+                ", birthday=" + birthday +
+                ", momentNumber=" + momentNumber +
+                ", followNumber=" + followNumber +
+                ", followerNumber=" + followerNumber +
+                ", notification='" + notification + '\'' +
+                ", tag='" + tag + '\'' +
+                '}';
+    }
 }

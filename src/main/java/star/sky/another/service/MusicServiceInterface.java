@@ -17,4 +17,19 @@ public interface MusicServiceInterface {
      * @return 影响的行数
      */
     Integer insertMusicList(List<Music> musicList);
+
+    /**
+     * 查询全部歌曲
+     *
+     * @return 歌曲列表
+     */
+    List<Music> selectAll();
+
+    /**
+     * 根据id审核音乐
+     *
+     * @param idList
+     * @return
+     */
+    Integer musicVerify(List<Long> idList);
 }

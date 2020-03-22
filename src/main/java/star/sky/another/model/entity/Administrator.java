@@ -50,4 +50,15 @@ public class Administrator {
     public void setImage(String image) {
         this.image = image == null ? null : image.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Administrator{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }

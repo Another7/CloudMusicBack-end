@@ -24,18 +24,17 @@ public class AlbumController {
     @PostMapping
     public Album publishWords(@RequestBody Album album) {
         Album albumResult = new Album();
-        album.setSingerId(123L);
-        album.setSingerName("邓紫棋");
+        System.out.println(album);
         //language=JSON5
-        String collectionMusic = "[\n" +
-                "  {\n" +
-                "    \"id\": 1,\n" +
-                "    \"fileName\": \"江南\",\n" +
-                "    \"singer\": \"林俊杰\",\n" +
-                "    \"url\": \"D:/data/audio/江南.mp3\"\n" +
-                "  }\n" +
-                "]";
-        album.setCollectionMusic(collectionMusic);
+//        String collectionMusic = "[\n" +
+//                "  {\n" +
+//                "    \"id\": 1,\n" +
+//                "    \"fileName\": \"江南\",\n" +
+//                "    \"singer\": \"林俊杰\",\n" +
+//                "    \"url\": \"D:/data/audio/江南.mp3\"\n" +
+//                "  }\n" +
+//                "]";
+//        album.setCollectionMusic(collectionMusic);
         return albumServiceInterface.publishAlbum(album);
     }
 }

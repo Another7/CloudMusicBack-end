@@ -152,4 +152,25 @@ public class Music extends BaseEntity {
     public void setTag(String tag) {
         this.tag = tag == null ? null : tag.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Music{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", name='" + name + '\'' +
+                ", belongAlbumId=" + belongAlbumId +
+                ", belongAlbumName='" + belongAlbumName + '\'' +
+                ", singerId=" + singerId +
+                ", singerName='" + singerName + '\'' +
+                ", duration=" + duration +
+                ", releaseTime=" + releaseTime +
+                ", yesterdayPlayCount=" + yesterdayPlayCount +
+                ", todayPlayCount=" + todayPlayCount +
+                ", totalPlayCount=" + totalPlayCount +
+                ", lyric='" + lyric + '\'' +
+                ", status=" + status +
+                ", tag='" + tag + '\'' +
+                '}';
+    }
 }

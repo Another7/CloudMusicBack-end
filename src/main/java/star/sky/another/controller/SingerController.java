@@ -7,6 +7,9 @@ import star.sky.another.service.SingerServiceInterface;
 import star.sky.another.service.impl.SingerServiceInterfaceImpl;
 import star.sky.another.view.EntityView;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @Description
  * @Author Another
@@ -36,10 +39,43 @@ public class SingerController {
         return singerServiceInterface.login(singer);
     }
 
+    /**
+     * 歌手发布专辑
+     *
+     * @param album
+     * @return
+     */
     @PostMapping(value = "/albums")
     public Album publishWords(@RequestBody Album album) {
         Album albumResult = new Album();
         System.out.println(album);
         return albumResult;
+    }
+
+    @GetMapping
+    public Singer selectByEmail(String email) {
+        return singerServiceInterface.selectByEmail(email);
+    }
+
+    /**
+     * 查询所有为通过审核的歌手
+     *
+     * @return
+     */
+    @GetMapping(value = "/all")
+    public List<Singer> selectAll() {
+        List<Singer> singerList = singerServiceInterface.selectAll();
+        // 过滤已经通过审核的歌手
+        return singerList.stream().filter(singer -> !singer.getAuthentication()).collect(Collectors.toList());
+    }
+
+    @PutMapping
+    public Boolean updateSinger(@RequestBody Singer singer) {
+        return singerServiceInterface.updateSinger(singer);
+    }
+
+    @DeleteMapping
+    public Boolean deleteSinger(Long id) {
+        return singerServiceInterface.deleteSinger(id);
     }
 }

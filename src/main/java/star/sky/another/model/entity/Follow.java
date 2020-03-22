@@ -50,4 +50,15 @@ public class Follow extends BaseEntity {
     public void setFollowImage(String followImage) {
         this.followImage = followImage == null ? null : followImage.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Follow{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", followId=" + followId +
+                ", followNickName='" + followNickName + '\'' +
+                ", followImage='" + followImage + '\'' +
+                '}';
+    }
 }

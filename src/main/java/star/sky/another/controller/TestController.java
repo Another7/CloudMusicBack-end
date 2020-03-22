@@ -22,17 +22,11 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/test")
 public class TestController {
+
     @GetMapping
     public String test() {
-        return "success";
+        return "OK";
     }
-
-//    @PostMapping(value = "/upload")
-//    public Map<String, String> upload(@RequestParam("files") MultipartFile multipartFile) {
-//        Map<String, String> nameUrlMap = new HashMap<>();
-//        nameUrlMap.put(multipartFile.getOriginalFilename(), FileUploadUtil.uploadFile(multipartFile).replaceAll("\\\\", "/"));
-//        return nameUrlMap;
-//    }
 
     @PostMapping(value = "/upload")
     public List<Map<String, String>> upload(HttpServletRequest request) {
@@ -41,9 +35,6 @@ public class TestController {
         List<MultipartFile> multipartFileList = ((MultipartHttpServletRequest) request).getFiles("files");
         multipartFileList.forEach(multipartFile -> {
             Map<String, String> nameUrlMap = new HashMap<>();
-            System.out.println(multipartFile.getContentType());
-            System.out.println(multipartFile.getName());
-            System.out.println(multipartFile.getOriginalFilename());
             nameUrlMap.put("fileName", multipartFile.getOriginalFilename());
             nameUrlMap.put("url", FileUploadUtil.uploadFile(multipartFile).replaceAll("\\\\", "/"));
             mapList.add(nameUrlMap);

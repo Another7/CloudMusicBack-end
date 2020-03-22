@@ -72,6 +72,14 @@
             tag                  = #{tag,jdbcType=LONGVARCHAR}
         where id = #{id,jdbcType=BIGINT}
     </update>
+    <update id="musicVerify" parameterType="java.util.List">
+        update music
+        set status = 1
+        where id in
+        <foreach collection="idList" separator="," item="id" open="(" close=")">
+            #{id}
+        </foreach>
+    </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select id,
                url,

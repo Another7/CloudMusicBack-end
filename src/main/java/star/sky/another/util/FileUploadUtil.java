@@ -12,17 +12,20 @@ import java.util.UUID;
  * @Date 2019/06/29 17:48
  **/
 public class FileUploadUtil {
+    private static String platform = System.getProperty("os.name");
+    private static String basePath;
+
+    static {
+        basePath = platform.contains("Windows") ? "D:/data" : "/home/nginx/data";
+    }
+
     public static String uploadFile(MultipartFile multipartFile) {
-//        String path = System.getProperty("user.home") + File.separator + "cloudMusic" + File.separator + "data"
-//                + File.separator + UUID.randomUUID().toString();
-        String imagePath = "D:/data/images";
-        String audioPath = "D:/data/audios";
         String contentType = multipartFile.getContentType();
         String path = "";
         if (contentType.startsWith("image/")) {
-            path = imagePath;
+            path = basePath + "/images/";
         } else if (contentType.startsWith("audio/")) {
-            path = audioPath;
+            path += basePath + "/audios/";
         }
         File pathFile = new File(path);
         if (!pathFile.exists()) {

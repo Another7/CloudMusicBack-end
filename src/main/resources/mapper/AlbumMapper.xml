@@ -23,11 +23,11 @@
             useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into album (id, title, description,
                            singer_id, singer_name, company,
-                           create_time, image, collection_music,
+                           image, collection_music,
                            tag, status)
         values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
                 #{singerId,jdbcType=BIGINT}, #{singerName,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR},
-                #{createTime,jdbcType=TIMESTAMP}, #{image,jdbcType=VARCHAR}, #{collectionMusic,jdbcType=LONGVARCHAR},
+                #{image,jdbcType=VARCHAR}, #{collectionMusic,jdbcType=LONGVARCHAR},
                 #{tag,jdbcType=LONGVARCHAR}, #{status,jdbcType=INTEGER})
     </insert>
     <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.Album">

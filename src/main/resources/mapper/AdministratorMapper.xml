@@ -36,4 +36,10 @@
         select id, account, password, nick_name, image
         from administrator
     </select>
+    <select id="selectByEmailPassword" resultMap="BaseResultMap">
+        select id, account, password, nick_name, image
+        from administrator
+        where account = #{account}
+          and password = #{password}
+    </select>
 </mapper>

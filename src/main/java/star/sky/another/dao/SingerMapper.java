@@ -30,4 +30,12 @@ public interface SingerMapper {
      * @return
      */
     Singer selectByEmailAndPassword(Singer singer);
+
+    /**
+     * 更新歌手信息
+     *
+     * @param singer
+     * @return
+     */
+    Boolean updateSinger(Singer singer);
 }

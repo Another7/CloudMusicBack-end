@@ -92,4 +92,19 @@ public class Comments extends BaseEntity {
     public void setCommentatorImage(String commentatorImage) {
         this.commentatorImage = commentatorImage == null ? null : commentatorImage.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Comments{" +
+                "id=" + id +
+                ", type=" + type +
+                ", content='" + content + '\'' +
+                ", createTime=" + createTime +
+                ", thumbNumber=" + thumbNumber +
+                ", recordId=" + recordId +
+                ", commentatorId=" + commentatorId +
+                ", commentatorNickName='" + commentatorNickName + '\'' +
+                ", commentatorImage='" + commentatorImage + '\'' +
+                '}';
+    }
 }

@@ -17,4 +17,12 @@ public interface MusicMapper {
     int updateByPrimaryKey(Music record);
 
     int insertList(@Param(value = "musicList") List<Music> musicList);
+
+    /**
+     * 根据id审核音乐
+     *
+     * @param idList
+     * @return
+     */
+    int musicVerify(@Param(value = "idList") List<Long> idList);
 }

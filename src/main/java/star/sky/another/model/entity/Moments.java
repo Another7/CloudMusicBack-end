@@ -82,4 +82,18 @@ public class Moments extends BaseEntity {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Moments{" +
+                "id=" + id +
+                ", creatorId=" + creatorId +
+                ", creatorNickName='" + creatorNickName + '\'' +
+                ", creatorImage='" + creatorImage + '\'' +
+                ", publishTime=" + publishTime +
+                ", type=" + type +
+                ", thumbNumber=" + thumbNumber +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

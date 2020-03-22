@@ -6,6 +6,8 @@ import star.sky.another.model.entity.Singer;
 import star.sky.another.service.SingerServiceInterface;
 import star.sky.another.view.EntityView;
 
+import java.util.List;
+
 /**
  * @Description 歌手服务实现类
  * @Author Another
@@ -59,5 +61,27 @@ public class SingerServiceInterfaceImpl implements SingerServiceInterface {
             }
         }
         return entityView;
+    }
+
+    @Override
+    public Singer selectByEmail(String email) {
+        Singer singer = new Singer();
+        singer.setEmail(email);
+        return singerMapper.selectBySingerEmail(singer);
+    }
+
+    @Override
+    public List<Singer> selectAll() {
+        return singerMapper.selectAll();
+    }
+
+    @Override
+    public Boolean updateSinger(Singer singer) {
+        return singerMapper.updateSinger(singer);
+    }
+
+    @Override
+    public Boolean deleteSinger(Long id) {
+        return singerMapper.deleteByPrimaryKey(id) == 1;
     }
 }

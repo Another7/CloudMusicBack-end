@@ -62,6 +62,7 @@ public class AlbumServiceInterfaceImpl implements AlbumServiceInterface {
                 System.out.println(music.getId());
             });
         }
+        //TODO 封装歌曲id到专辑中
         return album;
     }
 }

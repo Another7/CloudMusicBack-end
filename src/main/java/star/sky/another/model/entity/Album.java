@@ -112,4 +112,21 @@ public class Album extends BaseEntity {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", singerId=" + singerId +
+                ", singerName='" + singerName + '\'' +
+                ", company='" + company + '\'' +
+                ", createTime=" + createTime +
+                ", image='" + image + '\'' +
+                ", collectionMusic='" + collectionMusic + '\'' +
+                ", tag='" + tag + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

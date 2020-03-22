@@ -24,12 +24,12 @@
     insert into singer (id, nick_name, email, 
       password, image, gender, 
       tel, address, description, 
-      register_time, authentication, user_id, 
+      authentication, user_id,
       tag)
     values (#{id,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
       #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{registerTime,jdbcType=TIMESTAMP}, #{authentication,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, 
+      #{authentication,jdbcType=BIT}, #{userId,jdbcType=BIGINT},
       #{tag,jdbcType=LONGVARCHAR})
   </insert>
     <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.Singer">
@@ -48,6 +48,24 @@
       tag = #{tag,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <update id="updateSinger" parameterType="star.sky.another.model.entity.Singer">
+        update singer
+        <trim prefix="set" suffixOverrides=",">
+            <if test="nickName != null">
+                nick_name = #{nickName},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="authentication != null">
+                authentication = #{authentication }
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select id, nick_name, email, password, image, gender, tel, address, description, 
     register_time, authentication, user_id, tag

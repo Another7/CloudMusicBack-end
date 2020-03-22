@@ -132,4 +132,23 @@ public class Singer extends BaseEntity {
     public void setTag(String tag) {
         this.tag = tag == null ? null : tag.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Singer{" +
+                "id=" + id +
+                ", nickName='" + nickName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", image='" + image + '\'' +
+                ", gender=" + gender +
+                ", tel='" + tel + '\'' +
+                ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                ", registerTime=" + registerTime +
+                ", authentication=" + authentication +
+                ", userId=" + userId +
+                ", tag='" + tag + '\'' +
+                '}';
+    }
 }

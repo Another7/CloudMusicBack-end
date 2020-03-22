@@ -41,6 +41,11 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
         User userResult = userMapper.selectByUserEmail(user);
         // 未注册
         if (userResult == null) {
+            user.setMomentNumber(0);
+            user.setFollowNumber(0);
+            user.setFollowerNumber(0);
+            // 暂时的默认的头像
+            user.setImage("http://www.another.ren:8089/images/another.jpg");
             int result = userMapper.insert(user);
             if (result == 1) {
                 entityView.setCode("1");
