@@ -117,4 +117,24 @@
                tag
         from music
     </select>
+    <select id="searchMusicByKeyWord" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select id,
+               url,
+               name,
+               belong_album_id,
+               belong_album_name,
+               singer_id,
+               singer_name,
+               duration,
+               release_time,
+               yesterday_play_count,
+               today_play_count,
+               total_play_count,
+               lyric,
+               status,
+               tag
+        from music
+        where status = 1
+          and name like concat('%', #{keyWord}, '%')
+    </select>
 </mapper>

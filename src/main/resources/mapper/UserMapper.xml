@@ -41,21 +41,50 @@
     </insert>
     <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.User">
         update user
-        set nick_name       = #{nickName,jdbcType=VARCHAR},
-            email           = #{email,jdbcType=VARCHAR},
-            password        = #{password,jdbcType=VARCHAR},
-            image           = #{image,jdbcType=VARCHAR},
-            gender          = #{gender,jdbcType=INTEGER},
-            tel             = #{tel,jdbcType=VARCHAR},
-            address         = #{address,jdbcType=VARCHAR},
-            description     = #{description,jdbcType=VARCHAR},
-            register_time   = #{registerTime,jdbcType=TIMESTAMP},
-            birthday        = #{birthday,jdbcType=DATE},
-            moment_number   = #{momentNumber,jdbcType=INTEGER},
-            follow_number   = #{followNumber,jdbcType=INTEGER},
-            follower_number = #{followerNumber,jdbcType=INTEGER},
-            notification    = #{notification,jdbcType=LONGVARCHAR},
-            tag             = #{tag,jdbcType=LONGVARCHAR}
+        <trim prefix="set" suffixOverrides=",">
+            <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=DATE},
+            </if>
+            <if test="momentNumber != null">
+                moment_number = #{momentNumber,jdbcType=INTEGER},
+            </if>
+            <if test="followNumber != null">
+                follow_number = #{followNumber,jdbcType=INTEGER},
+            </if>
+            <if test="followerNumber != null">
+                follower_number = #{followerNumber,jdbcType=INTEGER},
+            </if>
+            <if test="notification != null">
+                notification = #{notification,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="tag != null">
+                tag = #{tag,jdbcType=LONGVARCHAR}
+            </if>
+        </trim>
         where id = #{id,jdbcType=BIGINT}
     </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">

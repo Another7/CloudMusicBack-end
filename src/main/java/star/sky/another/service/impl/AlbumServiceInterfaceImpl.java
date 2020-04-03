@@ -48,7 +48,8 @@ public class AlbumServiceInterfaceImpl implements AlbumServiceInterface {
             List<Music> musicList = new ArrayList<>();
             jsonNode.forEach(node -> {
                 Music music = new Music();
-                music.setName(node.get("fileName").asText(""));
+                String fileName = node.get("fileName").asText("");
+                music.setName(fileName.substring(0, fileName.lastIndexOf('.')));
                 music.setUrl(node.get("url").asText(""));
                 music.setStatus(0);
                 music.setBelongAlbumId(albumId);

@@ -1,6 +1,7 @@
 package star.sky.another.service;
 
 import star.sky.another.model.entity.Music;
+import star.sky.another.view.MusicView;
 
 import java.util.List;
 
@@ -32,4 +33,12 @@ public interface MusicServiceInterface {
      * @return
      */
     Integer musicVerify(List<Long> idList);
+
+    /**
+     * 根据关键字模糊搜索音乐
+     *
+     * @param keyWord 关键字
+     * @return 音乐视图
+     */
+    List<MusicView> searchMusicByKeyWord(String keyWord);
 }

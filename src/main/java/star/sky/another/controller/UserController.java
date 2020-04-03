@@ -21,6 +21,7 @@ public class UserController {
 
     @PutMapping()
     public Boolean updateUser(@RequestBody User user) {
+        System.out.println(user);
         return userServiceInterface.updateUser(user);
     }
 

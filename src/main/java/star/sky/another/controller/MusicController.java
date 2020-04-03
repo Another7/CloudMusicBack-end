@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 import star.sky.another.model.entity.Music;
 import star.sky.another.service.MusicServiceInterface;
+import star.sky.another.view.MusicView;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -54,5 +55,11 @@ public class MusicController {
             idList[i] = Long.parseLong(strings[i]);
         }
         return musicServiceInterface.musicVerify(Arrays.asList(idList));
+    }
+
+    @GetMapping(value = "/keyWord")
+    @ResponseBody
+    public List<MusicView> searchMusicByKeyWord(String keyWord) {
+        return musicServiceInterface.searchMusicByKeyWord(keyWord);
     }
 }

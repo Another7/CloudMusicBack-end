@@ -26,7 +26,7 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
 
     @Override
     public Boolean updateUser(User user) {
-        return null;
+        return userMapper.updateByPrimaryKey(user) == 1;
     }
 
     @Override

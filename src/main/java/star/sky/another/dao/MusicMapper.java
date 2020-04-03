@@ -25,4 +25,12 @@ public interface MusicMapper {
      * @return
      */
     int musicVerify(@Param(value = "idList") List<Long> idList);
+
+    /**
+     * 根据关键字模糊搜索音乐
+     *
+     * @param keyWord 关键字
+     * @return
+     */
+    List<Music> searchMusicByKeyWord(String keyWord);
 }

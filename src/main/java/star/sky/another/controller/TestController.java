@@ -36,7 +36,8 @@ public class TestController {
         multipartFileList.forEach(multipartFile -> {
             Map<String, String> nameUrlMap = new HashMap<>();
             nameUrlMap.put("fileName", multipartFile.getOriginalFilename());
-            nameUrlMap.put("url", FileUploadUtil.uploadFile(multipartFile).replaceAll("\\\\", "/"));
+//            nameUrlMap.put("url", FileUploadUtil.uploadFile(multipartFile).replaceAll("\\\\", "/"));
+            nameUrlMap.put("url", FileUploadUtil.uploadFile(multipartFile));
             mapList.add(nameUrlMap);
         });
         return mapList;

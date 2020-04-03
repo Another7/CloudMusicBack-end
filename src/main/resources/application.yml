@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: test
+    active: dev
   servlet:
     multipart:
       # 最大文件大小
