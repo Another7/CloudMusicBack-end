@@ -1,6 +1,7 @@
 package star.sky.another.model.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Music extends BaseEntity {
     private Long id;
@@ -172,5 +173,32 @@ public class Music extends BaseEntity {
                 ", status=" + status +
                 ", tag='" + tag + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Music music = (Music) o;
+        return id.equals(music.id) &&
+                Objects.equals(url, music.url) &&
+                Objects.equals(name, music.name) &&
+                Objects.equals(belongAlbumId, music.belongAlbumId) &&
+                Objects.equals(belongAlbumName, music.belongAlbumName) &&
+                Objects.equals(singerId, music.singerId) &&
+                Objects.equals(singerName, music.singerName) &&
+                Objects.equals(duration, music.duration) &&
+                Objects.equals(releaseTime, music.releaseTime) &&
+                Objects.equals(yesterdayPlayCount, music.yesterdayPlayCount) &&
+                Objects.equals(todayPlayCount, music.todayPlayCount) &&
+                Objects.equals(totalPlayCount, music.totalPlayCount) &&
+                Objects.equals(lyric, music.lyric) &&
+                Objects.equals(status, music.status) &&
+                Objects.equals(tag, music.tag);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, url, name, belongAlbumId, belongAlbumName, singerId, singerName, duration, releaseTime, yesterdayPlayCount, todayPlayCount, totalPlayCount, lyric, status, tag);
     }
 }

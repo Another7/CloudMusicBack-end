@@ -1,5 +1,7 @@
 package star.sky.another.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class User extends BaseEntity {
@@ -21,8 +23,10 @@ public class User extends BaseEntity {
 
     private String description;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date registerTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     private Integer momentNumber;

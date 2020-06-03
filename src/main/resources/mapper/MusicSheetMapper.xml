@@ -23,27 +23,51 @@
     <insert id="insert" parameterType="star.sky.another.model.entity.MusicSheet">
         insert into music_sheet (id, title, description,
                                  image, creator_id, creator_nick_name,
-                                 create_time, collection_number, total_play_count,
+                                 collection_number, total_play_count,
                                  share_count, collection_music, tag)
         values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
                 #{image,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, #{creatorNickName,jdbcType=VARCHAR},
-                #{createTime,jdbcType=TIMESTAMP}, #{collectionNumber,jdbcType=BIGINT},
+                #{collectionNumber,jdbcType=BIGINT},
                 #{totalPlayCount,jdbcType=BIGINT},
                 #{shareCount,jdbcType=BIGINT}, #{collectionMusic,jdbcType=LONGVARCHAR}, #{tag,jdbcType=LONGVARCHAR})
     </insert>
     <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.MusicSheet">
         update music_sheet
-        set title             = #{title,jdbcType=VARCHAR},
-            description       = #{description,jdbcType=VARCHAR},
-            image             = #{image,jdbcType=VARCHAR},
-            creator_id        = #{creatorId,jdbcType=BIGINT},
-            creator_nick_name = #{creatorNickName,jdbcType=VARCHAR},
-            create_time       = #{createTime,jdbcType=TIMESTAMP},
-            collection_number = #{collectionNumber,jdbcType=BIGINT},
-            total_play_count  = #{totalPlayCount,jdbcType=BIGINT},
-            share_count       = #{shareCount,jdbcType=BIGINT},
-            collection_music  = #{collectionMusic,jdbcType=LONGVARCHAR},
-            tag               = #{tag,jdbcType=LONGVARCHAR}
+        <trim prefix="set" suffixOverrides=",">
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorId != null">
+                creator_id = #{creatorId,jdbcType=BIGINT},
+            </if>
+            <if test="creatorNickName != null">
+                creator_nick_name = #{creatorNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="collectionNumber != null">
+                collection_number = #{collectionNumber,jdbcType=BIGINT},
+            </if>
+            <if test="totalPlayCount != null">
+                total_play_count = #{totalPlayCount,jdbcType=BIGINT},
+            </if>
+            <if test="shareCount != null">
+                share_count = #{shareCount,jdbcType=BIGINT},
+            </if>
+            <if test="collectionMusic != null">
+                collection_music = #{collectionMusic,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="tag != null">
+                tag = #{tag,jdbcType=LONGVARCHAR}
+            </if>
+        </trim>
         where id = #{id,jdbcType=BIGINT}
     </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -76,5 +100,91 @@
                collection_music,
                tag
         from music_sheet
+    </select>
+    <select id="selectByCreatorId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select id,
+               title,
+               description,
+               image,
+               creator_id,
+               creator_nick_name,
+               create_time,
+               collection_number,
+               total_play_count,
+               share_count,
+               collection_music,
+               tag
+        from music_sheet
+        where creator_id = #{creatorId}
+    </select>
+    <select id="hotMusicSheet" resultMap="BaseResultMap">
+        select id,
+               title,
+               description,
+               image,
+               creator_id,
+               creator_nick_name,
+               create_time,
+               collection_number,
+               total_play_count,
+               share_count,
+               collection_music,
+               tag
+        from music_sheet
+        order by total_play_count
+            desc
+        limit 10
+    </select>
+    <select id="selectMusicSheetByIdList" parameterType="java.util.List" resultMap="BaseResultMap">
+        select id,
+        title,
+        description,
+        image,
+        creator_id,
+        creator_nick_name,
+        create_time,
+        collection_number,
+        total_play_count,
+        share_count,
+        collection_music,
+        tag
+        from music_sheet
+        where id in
+        <foreach collection="idList" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+    <select id="selectMusicSheetByTag" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select id,
+               title,
+               description,
+               image,
+               creator_id,
+               creator_nick_name,
+               create_time,
+               collection_number,
+               total_play_count,
+               share_count,
+               collection_music,
+               tag
+        from music_sheet
+        where JSON_CONTAINS(tag, JSON_ARRAY(#{tagId}))
+    </select>
+    <select id="randMusicSheet" resultMap="BaseResultMap">
+        select id,
+               title,
+               description,
+               image,
+               creator_id,
+               creator_nick_name,
+               create_time,
+               collection_number,
+               total_play_count,
+               share_count,
+               collection_music,
+               tag
+        from music_sheet
+        order by rand()
+        limit 4
     </select>
 </mapper>

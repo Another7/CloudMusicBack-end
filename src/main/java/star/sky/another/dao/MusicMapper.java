@@ -33,4 +33,27 @@ public interface MusicMapper {
      * @return
      */
     List<Music> searchMusicByKeyWord(String keyWord);
+
+    /**
+     * 根据id查询歌曲
+     *
+     * @param musicIdList
+     * @return
+     */
+    List<Music> selectMusicByIds(@Param("musicIdList") List<Long> musicIdList);
+
+    /**
+     * 根据标签推荐歌曲
+     *
+     * @param tagId 标签id
+     * @return
+     */
+    List<Music> selectMusicByTag(Integer tagId);
+
+    /**
+     * 随机查询
+     *
+     * @return
+     */
+    List<Music> randMusic();
 }

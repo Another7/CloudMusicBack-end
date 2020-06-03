@@ -41,4 +41,20 @@ public interface MusicServiceInterface {
      * @return 音乐视图
      */
     List<MusicView> searchMusicByKeyWord(String keyWord);
+
+    /**
+     * 根据音乐的id查询音乐
+     *
+     * @param musicId
+     * @return
+     */
+    MusicView selectMusicById(Long musicId);
+
+    /**
+     * 根据歌曲id列表查询歌曲
+     *
+     * @param musicIdList
+     * @return
+     */
+    List<Music> selectMusicByIds(List<Long> musicIdList);
 }

@@ -14,4 +14,6 @@ public interface CommentsMapper {
     List<Comments> selectAll();
 
     int updateByPrimaryKey(Comments record);
+
+    List<Comments> selectMusicComments(Long musicId);
 }

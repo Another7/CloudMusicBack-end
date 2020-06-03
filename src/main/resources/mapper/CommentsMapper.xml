@@ -63,4 +63,20 @@
                commentator_image
         from comments
     </select>
+    <select id="selectMusicComments" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select id,
+               type,
+               content,
+               create_time,
+               thumb_number,
+               record_id,
+               commentator_id,
+               commentator_nick_name,
+               commentator_image
+        from comments
+#           type = 0 表示是对音乐发表的评论
+        where type = 0
+          and record_id = #{musicId}
+        order by create_time desc
+    </select>
 </mapper>

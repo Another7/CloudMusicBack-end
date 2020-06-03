@@ -14,4 +14,6 @@ public interface UserCollectionSheetMapper {
     List<UserCollectionSheet> selectAll();
 
     int updateByPrimaryKey(UserCollectionSheet record);
+
+    List<UserCollectionSheet> selectByUserId(Long userId);
 }

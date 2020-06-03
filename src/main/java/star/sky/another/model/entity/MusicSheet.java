@@ -1,6 +1,7 @@
 package star.sky.another.model.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class MusicSheet extends BaseEntity {
     private Long id;
@@ -139,5 +140,29 @@ public class MusicSheet extends BaseEntity {
                 ", collectionMusic='" + collectionMusic + '\'' +
                 ", tag='" + tag + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MusicSheet that = (MusicSheet) o;
+        return id.equals(that.id) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(image, that.image) &&
+                Objects.equals(creatorId, that.creatorId) &&
+                Objects.equals(creatorNickName, that.creatorNickName) &&
+                Objects.equals(createTime, that.createTime) &&
+                Objects.equals(collectionNumber, that.collectionNumber) &&
+                Objects.equals(totalPlayCount, that.totalPlayCount) &&
+                Objects.equals(shareCount, that.shareCount) &&
+                Objects.equals(collectionMusic, that.collectionMusic) &&
+                Objects.equals(tag, that.tag);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, description, image, creatorId, creatorNickName, createTime, collectionNumber, totalPlayCount, shareCount, collectionMusic, tag);
     }
 }

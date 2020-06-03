@@ -11,14 +11,6 @@ public class MusicView extends BaseView {
     private Music music;
     private String belongAlbumImageUrl;
 
-    @Override
-    public String toString() {
-        return "MusicView{" +
-                "music=" + music +
-                ", belongAlbumImageUrl='" + belongAlbumImageUrl + '\'' +
-                '}';
-    }
-
     public Music getMusic() {
         return music;
     }
@@ -33,5 +25,13 @@ public class MusicView extends BaseView {
 
     public void setBelongAlbumImageUrl(String belongAlbumImageUrl) {
         this.belongAlbumImageUrl = belongAlbumImageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "MusicView{" +
+                "music=" + music +
+                ", belongAlbumImageUrl='" + belongAlbumImageUrl + '\'' +
+                '}';
     }
 }

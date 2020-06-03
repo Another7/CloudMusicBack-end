@@ -2,6 +2,9 @@ package star.sky.another.service;
 
 import star.sky.another.model.entity.User;
 import star.sky.another.view.EntityView;
+import star.sky.another.view.UserView;
+
+import java.util.List;
 
 /**
  * @Description 用户服务接口
@@ -36,4 +39,21 @@ public interface UserServiceInterface {
      * 2 账号密码不匹配，登录失败
      */
     EntityView<User> login(User user);
+
+    /**
+     * 根据用户昵称模糊搜索用户
+     *
+     * @param keyWord 关键词
+     * @return 用户列表
+     */
+    List<UserView> searchUser(String keyWord, Long userId);
+
+    /**
+     * 根据用户id查询用户视图
+     *
+     * @param userId       用户id
+     * @param searchUserId 搜索的用户id
+     * @return
+     */
+    UserView selectUserView(Long userId, Long searchUserId);
 }

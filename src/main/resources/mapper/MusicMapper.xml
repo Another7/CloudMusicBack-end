@@ -137,4 +137,68 @@
         where status = 1
           and name like concat('%', #{keyWord}, '%')
     </select>
+    <select id="selectMusicByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+        select id,
+        url,
+        name,
+        belong_album_id,
+        belong_album_name,
+        singer_id,
+        singer_name,
+        duration,
+        release_time,
+        yesterday_play_count,
+        today_play_count,
+        total_play_count,
+        lyric,
+        status,
+        tag
+        from music
+        where status = 1
+        and id in
+        <foreach collection="musicIdList" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </select>
+    <select id="selectMusicByTag" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select id,
+               url,
+               name,
+               belong_album_id,
+               belong_album_name,
+               singer_id,
+               singer_name,
+               duration,
+               release_time,
+               yesterday_play_count,
+               today_play_count,
+               total_play_count,
+               lyric,
+               status,
+               tag
+        from music
+        where status = 1
+          and JSON_CONTAINS(tag, JSON_ARRAY(#{tagId}))
+    </select>
+    <select id="randMusic" resultMap="BaseResultMap">
+        select id,
+               url,
+               name,
+               belong_album_id,
+               belong_album_name,
+               singer_id,
+               singer_name,
+               duration,
+               release_time,
+               yesterday_play_count,
+               today_play_count,
+               total_play_count,
+               lyric,
+               status,
+               tag
+        from music
+        where status = 1
+        order by rand()
+        limit 20
+    </select>
 </mapper>

@@ -73,4 +73,19 @@
                status
         from album
     </select>
+    <select id="selectAlbumBySingerId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select id,
+               title,
+               description,
+               singer_id,
+               singer_name,
+               company,
+               create_time,
+               image,
+               collection_music,
+               tag,
+               status
+        from album
+        where singer_id = #{singerId}
+    </select>
 </mapper>

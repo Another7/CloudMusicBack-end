@@ -1,17 +1,29 @@
 package star.sky.another.service.impl;
 
 import org.springframework.stereotype.Service;
+import star.sky.another.dao.FollowMapper;
+import star.sky.another.dao.SingerMapper;
 import star.sky.another.dao.UserMapper;
+import star.sky.another.model.entity.Singer;
 import star.sky.another.model.entity.User;
 import star.sky.another.service.UserServiceInterface;
 import star.sky.another.view.EntityView;
+import star.sky.another.view.UserView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceInterfaceImpl implements UserServiceInterface {
     private final UserMapper userMapper;
+    private final FollowMapper followMapper;
+    private final SingerMapper singerMapper;
 
-    public UserServiceInterfaceImpl(UserMapper userMapper) {
+    public UserServiceInterfaceImpl(UserMapper userMapper, FollowMapper followMapper, SingerMapper singerMapper) {
         this.userMapper = userMapper;
+        this.followMapper = followMapper;
+        this.singerMapper = singerMapper;
     }
 
     @Override
@@ -44,8 +56,9 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
             user.setMomentNumber(0);
             user.setFollowNumber(0);
             user.setFollowerNumber(0);
+            user.setTag("[]");
             // 暂时的默认的头像
-            user.setImage("http://www.another.ren:8089/images/another.jpg");
+            user.setImage("another.jpg");
             int result = userMapper.insert(user);
             if (result == 1) {
                 entityView.setCode("1");
@@ -76,5 +89,35 @@ public class UserServiceInterfaceImpl implements UserServiceInterface {
             }
         }
         return entityView;
+    }
+
+    @Override
+    public List<UserView> searchUser(String keyWord, Long userId) {
+        List<User> userList = userMapper.searchUser(keyWord);
+        List<UserView> userViewList = new ArrayList<>();
+        Set<Long> followerIdSet = followMapper.selectFollower(userId);
+        userList.forEach((user) -> {
+            UserView userView = new UserView();
+            userView.setUser(user);
+            userView.setFollowed(followerIdSet.contains(user.getId()));
+            userViewList.add(userView);
+        });
+        return userViewList;
+    }
+
+    @Override
+    public UserView selectUserView(Long userId, Long searchUserId) {
+        UserView userView = new UserView();
+        User user = selectUserByUserId(searchUserId);
+        userView.setUser(user);
+        Singer singer = new Singer();
+        singer.setEmail(user.getEmail());
+        singer = singerMapper.selectBySingerEmail(singer);
+        // 搜索用户是否是歌手
+        userView.setSinger(singer != null);
+        Set<Long> followerIdSet = followMapper.selectFollower(userId);
+        // 该用户是否已关注搜索用户
+        userView.setFollowed(followerIdSet.contains(searchUserId));
+        return userView;
     }
 }

@@ -52,4 +52,18 @@ public class MusicServiceInterfaceImpl implements MusicServiceInterface {
         });
         return musicViewList;
     }
+
+    @Override
+    public MusicView selectMusicById(Long musicId) {
+        MusicView musicView = new MusicView();
+        Music music = musicMapper.selectByPrimaryKey(musicId);
+        musicView.setMusic(music);
+        musicView.setBelongAlbumImageUrl(albumMapper.selectByPrimaryKey(music.getBelongAlbumId()).getImage());
+        return musicView;
+    }
+
+    @Override
+    public List<Music> selectMusicByIds(List<Long> musicIdList) {
+        return musicMapper.selectMusicByIds(musicIdList);
+    }
 }

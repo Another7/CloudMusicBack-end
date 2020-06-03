@@ -1,9 +1,7 @@
 package star.sky.another.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import star.sky.another.util.FileUploadUtil;
@@ -24,8 +22,16 @@ import java.util.Map;
 public class TestController {
 
     @GetMapping
+    @ResponseBody
     public String test() {
-        return "OK";
+        RestTemplate restTemplate = new RestTemplate();
+        Map<String, String> paramMap = new HashMap<>();
+//        String ip = "192.168.0.107";
+//        String ip = "192.168.227.1";
+        paramMap.put("ak", "bqk76uFTm5s5OOK6XZ2ahlQj8GFwZOFV");
+//        paramMap.put("ip", ip);
+//        paramMap.put("ip", "");
+        return restTemplate.getForObject("http://api.map.baidu.com/location/ip?ak={ak}&ip={ip}", String.class, paramMap);
     }
 
     @PostMapping(value = "/upload")

@@ -167,4 +167,67 @@
         from user
         where email = #{email, jdbcType=VARCHAR}
     </select>
+    <select id="searchUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select id,
+               nick_name,
+               email,
+               password,
+               image,
+               gender,
+               tel,
+               address,
+               description,
+               register_time,
+               birthday,
+               moment_number,
+               follow_number,
+               follower_number,
+               notification,
+               tag
+        from user
+        where nick_name like concat('%', #{keyWord}, '%')
+    </select>
+    <select id="selectSimilarUserByTag" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select id,
+               nick_name,
+               email,
+               password,
+               image,
+               gender,
+               tel,
+               address,
+               description,
+               register_time,
+               birthday,
+               moment_number,
+               follow_number,
+               follower_number,
+               notification,
+               tag
+        from user
+        where JSON_CONTAINS(tag, JSON_ARRAY(#{tagID}))
+    </select>
+    <select id="selectUserByIds" parameterType="java.util.Set" resultMap="BaseResultMap">
+        select id,
+        nick_name,
+        email,
+        password,
+        image,
+        gender,
+        tel,
+        address,
+        description,
+        register_time,
+        birthday,
+        moment_number,
+        follow_number,
+        follower_number,
+        notification,
+        tag
+        from user
+        where id in
+        <foreach collection="idSet" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </select>
 </mapper>

@@ -48,7 +48,6 @@ public class SingerController {
     @PostMapping(value = "/albums")
     public Album publishWords(@RequestBody Album album) {
         Album albumResult = new Album();
-        System.out.println(album);
         return albumResult;
     }
 

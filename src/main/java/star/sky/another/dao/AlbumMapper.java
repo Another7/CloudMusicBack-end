@@ -15,4 +15,6 @@ public interface AlbumMapper {
     List<Album> selectAll();
 
     int updateByPrimaryKey(Album record);
+
+    List<Album> selectAlbumBySingerId(Long singerId);
 }

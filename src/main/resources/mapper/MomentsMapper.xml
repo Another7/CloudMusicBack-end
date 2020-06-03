@@ -18,10 +18,10 @@
     </delete>
     <insert id="insert" parameterType="star.sky.another.model.entity.Moments">
         insert into moments (id, creator_id, creator_nick_name,
-                             creator_image, publish_time, type,
+                             creator_image, type,
                              thumb_number, content)
         values (#{id,jdbcType=BIGINT}, #{creatorId,jdbcType=BIGINT}, #{creatorNickName,jdbcType=VARCHAR},
-                #{creatorImage,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER},
+                #{creatorImage,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
                 #{thumbNumber,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
     </insert>
     <update id="updateByPrimaryKey" parameterType="star.sky.another.model.entity.Moments">
@@ -57,5 +57,24 @@
                thumb_number,
                content
         from moments
+    </select>
+    <select id="selectMomentsByCreatorId" parameterType="java.util.Set" resultMap="BaseResultMap">
+        select id,
+        creator_id,
+        creator_nick_name,
+        creator_image,
+        publish_time,
+        type,
+        thumb_number,
+        content
+        from moments
+        where
+        # type = 0 表示对歌曲的分享
+        type = 0
+        and creator_id in
+        <foreach collection="creatorIdSet" item="creatorId" open="(" close=")" separator=",">
+            #{creatorId}
+        </foreach>
+        order by publish_time desc
     </select>
 </mapper>

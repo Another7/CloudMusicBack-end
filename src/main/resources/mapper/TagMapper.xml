@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="star.sky.another.dao.TagMapper">
+    <resultMap id="BaseResultMap" type="star.sky.another.model.entity.Tag">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
+        <result column="tag_name" jdbcType="VARCHAR" property="tagName"/>
+    </resultMap>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select *
+        from tag;
+    </select>
+    <select id="selectTagById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select *
+        from tag
+        where id = #{id}
+    </select>
+</mapper>

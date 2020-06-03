@@ -66,4 +66,14 @@ public class AlbumServiceInterfaceImpl implements AlbumServiceInterface {
         //TODO 封装歌曲id到专辑中
         return album;
     }
+
+    @Override
+    public Album selectAlbumById(Long albumId) {
+        return albumMapper.selectByPrimaryKey(albumId);
+    }
+
+    @Override
+    public List<Album> selectAlbumBySingerId(Long singerId) {
+        return albumMapper.selectAlbumBySingerId(singerId);
+    }
 }

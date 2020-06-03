@@ -1,8 +1,10 @@
 package star.sky.another.dao;
 
+import org.apache.ibatis.annotations.Param;
 import star.sky.another.model.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Long id);
@@ -18,4 +20,10 @@ public interface UserMapper {
     User selectByUserEmail(User user);
 
     User selectByEmailPassword(User user);
+
+    List<User> searchUser(String keyWord);
+
+    List<User> selectSimilarUserByTag(Integer tagId);
+
+    List<User> selectUserByIds(@Param("idSet") Set<Long> idSet);
 }

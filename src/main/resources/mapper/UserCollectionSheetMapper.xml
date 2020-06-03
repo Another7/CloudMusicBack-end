@@ -36,4 +36,9 @@
         select id, user_id, sheet_id, sheet_title, sheet_image
         from user_collection_sheet
     </select>
+    <select id="selectByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select id, user_id, sheet_id, sheet_title, sheet_image
+        from user_collection_sheet
+        where user_id = #{userId}
+    </select>
 </mapper>

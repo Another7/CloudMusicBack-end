@@ -62,4 +62,15 @@ public class MusicController {
     public List<MusicView> searchMusicByKeyWord(String keyWord) {
         return musicServiceInterface.searchMusicByKeyWord(keyWord);
     }
+
+    @GetMapping(value = "/view")
+    public MusicView selectMusicById(Long musicId) {
+        return musicServiceInterface.selectMusicById(musicId);
+    }
+
+    @GetMapping(value = "/batch")
+    @ResponseBody
+    public List<Music> selectMusicByIds(@RequestParam("musicIdList") List<Long> musicIdList) {
+        return musicServiceInterface.selectMusicByIds(musicIdList);
+    }
 }

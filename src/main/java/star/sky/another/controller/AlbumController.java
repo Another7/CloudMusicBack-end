@@ -1,11 +1,10 @@
 package star.sky.another.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import star.sky.another.model.entity.Album;
 import star.sky.another.service.AlbumServiceInterface;
+
+import java.util.List;
 
 /**
  * @Description
@@ -21,10 +20,15 @@ public class AlbumController {
         this.albumServiceInterface = albumServiceInterface;
     }
 
+    @GetMapping
+    @ResponseBody
+    public Album selectAlbumById(Long albumId) {
+        return albumServiceInterface.selectAlbumById(albumId);
+    }
+
     @PostMapping
+    @ResponseBody
     public Album publishWords(@RequestBody Album album) {
-        Album albumResult = new Album();
-        System.out.println(album);
         //language=JSON5
 //        String collectionMusic = "[\n" +
 //                "  {\n" +
@@ -36,5 +40,11 @@ public class AlbumController {
 //                "]";
 //        album.setCollectionMusic(collectionMusic);
         return albumServiceInterface.publishAlbum(album);
+    }
+
+    @GetMapping("/singerId")
+    @ResponseBody
+    public List<Album> selectAlbumBySingerId(Long singerId) {
+        return albumServiceInterface.selectAlbumBySingerId(singerId);
     }
 }

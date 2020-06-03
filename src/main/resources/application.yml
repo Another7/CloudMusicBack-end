@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: test
   servlet:
     multipart:
       # 最大文件大小
@@ -8,8 +8,8 @@ spring:
       # 最大请求大小
       max-request-size: 100MB
   jackson:
-    time-zone: GMT+8
-    date-format: yyyy-MM-dd
+    #    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
     #    date-format: yyyy-MM-dd HH:mm:ss 2020-02-14 12:48:32
     #    date-format: java.text.SimpleDateFormat 20-2-14 上午12:48
     #    date-format: com.fasterxml.jackson.databind.util.StdDateFormat 2020-02-14T00:48:32.000+0800 默认值
